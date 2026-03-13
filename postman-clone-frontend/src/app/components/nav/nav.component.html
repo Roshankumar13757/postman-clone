@@ -1,0 +1,95 @@
+<header class="nav-bar">
+
+  <!-- Left: Logo + Workspaces -->
+  <div class="nav-left d-flex align-items-center gap-1">
+
+    <!-- Home icon -->
+    <a class="nav-home-btn" routerLink="/dashboard" matTooltip="Home">
+      <mat-icon>home</mat-icon>
+    </a>
+
+    <div class="nav-divider-v"></div>
+
+    <!-- Workspaces dropdown -->
+    <button class="nav-workspaces-btn" [matMenuTriggerFor]="workspacesMenu">
+      <span>Workspaces</span>
+      <mat-icon class="chevron">expand_more</mat-icon>
+    </button>
+
+    <mat-menu #workspacesMenu="matMenu" class="nav-dropdown">
+      <div class="dropdown-header">My Workspaces</div>
+      <button mat-menu-item routerLink="/dashboard">
+        <mat-icon>video_library</mat-icon>
+        <span>My Videos</span>
+      </button>
+      <button mat-menu-item routerLink="/dashboard/playlists">
+        <mat-icon>playlist_play</mat-icon>
+        <span>Playlists</span>
+      </button>
+      <button mat-menu-item routerLink="/dashboard/liked">
+        <mat-icon>thumb_up</mat-icon>
+        <span>Liked Videos</span>
+      </button>
+    </mat-menu>
+
+  </div>
+
+  <!-- Center: Search -->
+  <div class="nav-center">
+    <div class="search-box">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="onSearch()"
+        placeholder="Search"
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <!-- Right: Actions -->
+  <div class="nav-right d-flex align-items-center gap-2">
+
+    <button class="upgrade-btn">Upgrade</button>
+
+    <button class="icon-btn" matTooltip="Notifications">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+
+    <button class="icon-btn" matTooltip="Settings" routerLink="/dashboard/settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+
+    <!-- Avatar -->
+    <button class="avatar-btn" [matMenuTriggerFor]="profileMenu"
+            [matTooltip]="user?.username || 'Profile'">
+      <div class="avatar" [style.background]="avatarColor">
+        {{ getAvatarInitial() }}
+      </div>
+    </button>
+
+    <mat-menu #profileMenu="matMenu" class="nav-dropdown">
+      <div class="dropdown-header" *ngIf="user">
+        <strong>{{ user.username }}</strong>
+        <span class="dropdown-email">{{ user.email }}</span>
+      </div>
+      <mat-divider></mat-divider>
+      <button mat-menu-item routerLink="/dashboard/your-videos">
+        <mat-icon>video_library</mat-icon>
+        <span>Your Videos</span>
+      </button>
+      <button mat-menu-item routerLink="/dashboard/history">
+        <mat-icon>history</mat-icon>
+        <span>History</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+
+  </div>
+
+</header>

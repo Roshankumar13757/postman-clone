@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+// ── Page ───────────────────────────────────────────────────────
+.login-page {
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4a1060 0%, #7b2d8b 25%, #c0546a 60%, #e8856a 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 40px 16px;
+}
+
+// ── Blobs ──────────────────────────────────────────────────────
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -40px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.97); }
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.blob-1 { width: 500px; height: 500px; background: #7b2fff; top: -100px; left: -100px; animation: blobFloat 10s ease-in-out infinite; }
+.blob-2 { width: 400px; height: 400px; background: #ff6b35; bottom: -80px; right: -80px; animation: blobFloat 13s ease-in-out infinite reverse; }
+.blob-3 { width: 300px; height: 300px; background: #ff3d9a; top: 50%; left: 60%; animation: blobFloat 8s ease-in-out infinite 2s; }
+
+// ── Logo ───────────────────────────────────────────────────────
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.logo-circle {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b35, #e8304a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(232, 48, 74, 0.5);
+  animation: fadeDown 0.6s ease both;
+
+  .logo-icon {
+    color: #fff;
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+// ── Glass card ─────────────────────────────────────────────────
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.glass-card {
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 36px 32px 28px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+
+.subtitle {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  margin-bottom: 6px;
+  font-weight: 300;
+  em { color: #fff; font-style: italic; }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+// ── Material form field glass override ────────────────────────
+.glass-field {
+  // Label
+  .mat-mdc-floating-label,
+  .mdc-floating-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  // Input text
+  .mat-mdc-input-element {
+    color: #fff !important;
+    caret-color: #6ee7ff;
+  }
+
+  // Outline border
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  // Focus border
+  &.mat-focused {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: #6ee7ff !important;
+    }
+    .mat-mdc-floating-label,
+    .mdc-floating-label {
+      color: #6ee7ff !important;
+    }
+  }
+
+  // Suffix icon
+  .mat-mdc-icon-button,
+  mat-icon {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  // Placeholder
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// ── Material checkbox override ─────────────────────────────────
+.glass-checkbox {
+  .mdc-checkbox__background {
+    border-color: rgba(255,255,255,0.4) !important;
+    background: rgba(255,255,255,0.1) !important;
+  }
+  .mdc-checkbox--selected .mdc-checkbox__background {
+    background: #4caf50 !important;
+    border-color: #4caf50 !important;
+  }
+  .mdc-label {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.82rem;
+  }
+}
+
+// ── Forgot link ────────────────────────────────────────────────
+.forgot-link {
+  font-size: 0.8rem;
+  color: #6ee7ff;
+  text-decoration: none;
+  &:hover { color: #fff; }
+}
+
+// ── Alert boxes ────────────────────────────────────────────────
+.alert-box {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  animation: fadeUp 0.3s ease both;
+}
+.success-box {
+  background: rgba(76,175,80,0.15);
+  border: 1px solid rgba(76,175,80,0.4);
+  color: #a5d6a7;
+  .status-icon { color: #4caf50; font-size: 1.2rem; }
+}
+.error-box {
+  background: rgba(239,83,80,0.15);
+  border: 1px solid rgba(239,83,80,0.4);
+  color: #ef9a9a;
+  .status-icon { color: #ef5350; font-size: 1.2rem; }
+}
+
+// ── Sign In button ─────────────────────────────────────────────
+.signin-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff6b35, #e8304a);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  transition: box-shadow 0.2s, transform 0.15s;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 0 0 4px rgba(255,107,53,0.35), 0 0 20px rgba(255,107,53,0.4);
+    transform: translateY(-1px);
+  }
+  &:disabled { opacity: 0.7; cursor: not-allowed; }
+
+  // Mat spinner color inside button
+  .btn-spinner circle {
+    stroke: #fff !important;
+  }
+}
+
+// ── Divider ────────────────────────────────────────────────────
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.78rem;
+
+  &::before, &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+}
+
+// ── OAuth buttons ──────────────────────────────────────────────
+.oauth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+
+  &:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-1px);
+  }
+}
+
+.oauth-icon {
+  width: 18px; height: 18px; flex-shrink: 0;
+}
+
+// ── Bottom link ────────────────────────────────────────────────
+.bottom-link {
+  font-size: 0.82rem;
+  color: #ff9a7a;
+  text-decoration: none;
+  animation: fadeUp 0.7s ease 0.3s both;
+  &:hover { color: #fff; }
+}
