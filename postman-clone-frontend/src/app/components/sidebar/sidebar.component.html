@@ -1,0 +1,61 @@
+<aside class="sidebar">
+  <!-- COLLECTIONS -->
+  <div class="sidebar-section">
+    <div class="section-header" (click)="toggle('collections')">
+      <!-- <mat-icon>folder</mat-icon> -->
+      <span>Collections</span>
+      <mat-icon class="arrow">
+        {{ collectionsOpen ? 'expand_more' : 'chevron_right' }}
+      </mat-icon>
+    </div>
+    <div class="section-content" *ngIf="collectionsOpen">
+      <div class="collection" *ngFor="let col of collections">
+        <div class="collection-name">{{ col.name }}</div>
+        <div class="request" *ngFor="let req of col.requests">
+          <span class="method" [ngClass]="req.method.toLowerCase()">
+            {{ req.method }}
+          </span>
+          {{ req.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENVIRONMENTS -->
+  <div class="sidebar-section">
+    <div class="section-header" (click)="toggle('environments')">
+      <mat-icon>settings</mat-icon>
+      <span>Environments</span>
+      <mat-icon class="arrow">
+        {{ environmentsOpen ? 'expand_more' : 'chevron_right' }}
+      </mat-icon>
+    </div>
+    <div *ngIf="environmentsOpen" class="section-content">
+      <div class="env-item">Development</div>
+      <div class="env-item">Production</div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="sidebar-section">
+    <div class="section-header" (click)="toggle('history')">
+      <mat-icon>history</mat-icon>
+      <span>History</span>
+      <mat-icon class="arrow">
+        {{ historyOpen ? 'expand_more' : 'chevron_right' }}
+      </mat-icon>
+    </div>
+    <div *ngIf="historyOpen" class="section-content">
+      <div class="history-item">GET /login</div>
+      <div class="history-item">POST /signup</div>
+    </div>
+  </div>
+
+  <!-- LOGOUT -->
+  <div class="sidebar-section">
+    <div class="logout" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </div>
+  </div>
+</aside>

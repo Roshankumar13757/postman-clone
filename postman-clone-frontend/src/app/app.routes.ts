@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PlaygroundComponent } from './components/workspace/playground/playground.component';
+import { WorkspaceComponent } from './components/workspace/workspace.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, 
@@ -9,7 +11,7 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: '', component: DashboardComponent }, // default child route
+      { path: '', component: WorkspaceComponent }, // default child route
       { path: 'history', component: DashboardComponent },
       { path: 'playlists', component: DashboardComponent },
       { path: 'watch-later', component: DashboardComponent },
