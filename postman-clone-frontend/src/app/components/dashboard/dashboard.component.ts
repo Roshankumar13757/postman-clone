@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Nav } from '../nav/nav.component';
-import { MatIconModule } from '@angular/material/icon';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 interface LocalUser {
   id: string;
@@ -10,48 +10,15 @@ interface LocalUser {
   email: string;
 }
 
-interface RequestItem {
-  method: string;
-  name: string;
-}
-
-interface Collection {
-  name: string;
-  requests: RequestItem[];
-}
-
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule,RouterOutlet, RouterModule, MatIconModule, Nav],
+  imports: [CommonModule, RouterOutlet, RouterModule, Nav, SidebarComponent],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
+  styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
-
   user: LocalUser | null = null;
-
-  collectionsOpen = true;
-  environmentsOpen = false;
-  historyOpen = false;
-
-  collections: Collection[] = [
-    {
-      name: 'squadCom',
-      requests: [
-        { method: 'POST', name: 'New Request' },
-        { method: 'GET', name: 'login' }
-      ]
-    },
-    {
-      name: 'postman-back',
-      requests: []
-    },
-    {
-      name: 'streaming_Web',
-      requests: []
-    }
-  ];
 
   constructor(private router: Router) {}
 
@@ -61,17 +28,11 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+    this.user = JSON.parse(userStr);
   }
 
-  toggle(section: string) {
-    if (section === 'collections') this.collectionsOpen = !this.collectionsOpen;
-    if (section === 'environments') this.environmentsOpen = !this.environmentsOpen;
-    if (section === 'history') this.historyOpen = !this.historyOpen;
-  }
-
-  logout() {
+  handleLogout() {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
-
 }
